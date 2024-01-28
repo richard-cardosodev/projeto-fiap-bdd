@@ -23,6 +23,7 @@ public class AuthTokenFilter implements Filter {
             authToken = obtainAuthToken();
         }
         if (!isRetrievingToken) {
+            System.out.println("Setando header com token");
             requestSpec.header("Authorization", authToken);
         }
 
@@ -42,7 +43,7 @@ public class AuthTokenFilter implements Filter {
                     .body(payload);
 
             String response = requestSpecification
-                    .post(Variables.CLUSTER_URL + "/prod/auth")
+                    .post(Variables.CLUSTER_URL + "/auth")
                     .then()
                     .extract()
                     .asString();

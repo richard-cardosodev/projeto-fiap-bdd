@@ -7,6 +7,7 @@ public class TestConfig {
 
     @Before
     public void setup() {
+        System.out.println("Configurando filtro de autenticação");
         RestAssured.filters(new AuthTokenFilter());
     }
 }
