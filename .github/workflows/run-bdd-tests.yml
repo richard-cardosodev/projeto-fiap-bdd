@@ -36,7 +36,7 @@ jobs:
     - name: Retrieve Api Invoke URL
       run: |
         API_ID=$(aws apigateway get-rest-apis --query "items[?name=='${{ env.API_NAME }}'].id" --output text)
-        INVOKE_URL="https://$API_ID.execute-api.${{ env.AWS_DEFAULT_REGION }}.amazonaws.com"
+        INVOKE_URL="https://$API_ID.execute-api.${{ env.AWS_DEFAULT_REGION }}.amazonaws.com/${{ env.STAGE_NAME }}"
 
         echo "PROJETO_FIAP_CLUSTER_URL=$INVOKE_URL" >> $GITHUB_ENV
 
