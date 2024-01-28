@@ -1,4 +1,4 @@
-package br.fiap.projeto.bdd;
+package br.fiap.projeto.bdd.utils;
 
 public class Variables {
 
