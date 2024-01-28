@@ -6,6 +6,8 @@ on:
 
 env:
   AWS_DEFAULT_REGION: 'us-east-1'
+  API_NAME: "ProjetoFiapAPI"
+  STAGE_NAME: "prod"
 
 jobs:
 
