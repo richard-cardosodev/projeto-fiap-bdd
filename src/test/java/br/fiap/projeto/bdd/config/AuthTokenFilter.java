@@ -23,6 +23,7 @@ public class AuthTokenFilter implements Filter {
             authToken = obtainAuthToken();
         }
         if (!isRetrievingToken) {
+            System.out.println("Setando header com token");
             requestSpec.header("Authorization", authToken);
         }
 

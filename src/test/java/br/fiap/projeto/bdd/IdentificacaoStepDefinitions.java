@@ -20,6 +20,8 @@ public class IdentificacaoStepDefinitions {
     @Quando("Cadastrar-se um cliente com o nome {string} e o cpf {string}")
     public void cadastrar_se_um_cliente_com_o_nome_e_o_cpf(String string, String string2) {
 
+        System.out.println("Url de identificacao: " + IDENTIFICACAO_URL);
+
         response = given()
                 .contentType(APPLICATION_JSON_VALUE)
                 .body(geraClienteRequestDTO())
