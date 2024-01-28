@@ -13,7 +13,7 @@ import static io.restassured.RestAssured.given;
 
 public class IdentificacaoStepDefinitions {
 
-    private static final String IDENTIFICACAO_URL = Variables.CLUSTER_URL + "/prod/identificacao/clientes";
+    private static final String IDENTIFICACAO_URL = Variables.CLUSTER_URL + "/identificacao/clientes";
 
     private Response response;
 
