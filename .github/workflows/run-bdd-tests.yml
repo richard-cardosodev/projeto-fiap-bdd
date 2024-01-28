@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   pull_request:
 
+env:
+  AWS_DEFAULT_REGION: 'us-east-1'
+
 jobs:
 
   run-bdd-tests:
