@@ -16,38 +16,16 @@ import static org.junit.Assert.assertEquals;
 public class ComandaStepDefinitions {
     private static final String BASE_URL = Variables.CLUSTER_URL;
     private static String responseString;
-    @Quando("Solicitar-se a criacao de comanda para o pedido")
-    public void solicitar_se_a_criacao_de_comanda_para_o_pedido() throws JsonProcessingException {
-        RestAssured.baseURI = BASE_URL;
-
-        String codigoPedido = DataTransfer.getValueAsString(DataTransferKey.CODIGO_PEDIDO);
-
-        Response response = RestAssured.given()
-                .pathParam("codigo", codigoPedido)
-                .when()
-                .patch("/pedido/pedidos/{codigo}/enviar-comanda")
-                .then()
-                .statusCode(200)
-                .extract().response();
-
-        int statusCode = response.getStatusCode();
-        assertEquals(200, statusCode);
-
-        Map<String, Object> resultMap = stringJsonToMapStringObject(response.getBody().asString());
-
-        DataTransfer.setValue(DataTransferKey.CODIGO_PEDIDO, resultMap.get("codigo").toString());
-        // Exibir a resposta
-        responseString = "Resposta da API: " + response.getBody().asString();
-    }
-
-    @Quando("A comanda for criada com sucesso")
-    public void a_comanda_for_criada_com_sucesso() {
-        System.out.println(responseString);
-    }
 
     @Quando("Finalizar-se a comanda do pedido")
     public void finalizar_se_a_comanda_do_pedido() throws JsonProcessingException {
         RestAssured.baseURI = BASE_URL;
+
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         String codigoPedido = DataTransfer.getValueAsString(DataTransferKey.CODIGO_PEDIDO);
 
@@ -55,19 +33,19 @@ public class ComandaStepDefinitions {
         Response responsePreparar = RestAssured.given()
                 .pathParam("codigo-pedido", codigoPedido)
                 .when()
-                .patch("/comanda/comanda/{codigo-pedido}/preparar")
+                .patch("/comanda/comandas/{codigo-pedido}/preparar")
                 .then()
-                .statusCode(200)
+                .statusCode(201)
                 .extract().response();
 
         int statusCodePreparar = responsePreparar.getStatusCode();
-        assertEquals(200, statusCodePreparar);
+        assertEquals(201, statusCodePreparar);
 
         // Prepara a comanda
         Response responseFinalizar = RestAssured.given()
-                .pathParam("codigo-pedido", codigoPedido)
+                .pathParam("codigo", codigoPedido)
                 .when()
-                .patch("/comanda/comanda/{codigo-pedido}/finalizar")
+                .put("/pedido/pedidos/{codigo}/prontificar")
                 .then()
                 .statusCode(200)
                 .extract().response();
