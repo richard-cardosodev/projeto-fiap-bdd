@@ -17,11 +17,8 @@ Funcionalidade: Fluxo completo do pedido
     E Solicitar-se confirmacao para o pedido criado
     E O pedido for confirmado com sucesso
 
-    E Efetuar-se solicitacao de processamento do pagamento do pedido
-    E O processamento de pagamento do pedido for realizado com sucesso
-
     E O pagamento do pedido for confirmado
-    E O status do pedido for atualizado para "PAGO"
+    E O status do pedido for atualizado para Aprovado com sucesso
 
     E Solicitar-se a criacao de comanda para o pedido
     E A comanda for criada com sucesso
