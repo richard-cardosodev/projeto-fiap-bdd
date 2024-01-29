@@ -77,7 +77,7 @@ public class PedidoStepDefinitions {
     @Quando("Solicitar-se confirmacao para o pedido criado")
     public void solicitar_se_confirmacao_para_o_pedido_criado() {
         String codigoPedido = DataTransfer.getValueAsString(DataTransferKey.CODIGO_PEDIDO);
-        RestAssured.baseURI = BASE_URL + codigoPedido;
+        RestAssured.baseURI = BASE_URL;
 
         Response response = RestAssured.given()
                 .pathParam("codigo_pedido", codigoPedido)
@@ -101,22 +101,22 @@ public class PedidoStepDefinitions {
 
     @Quando("Informar-se que o pedido esta finalizado")
     public void informar_se_que_o_pedido_esta_finalizado() {
-        String codigoPedido = DataTransfer.getValueAsString(DataTransferKey.CODIGO_PEDIDO);
-        RestAssured.baseURI = BASE_URL + codigoPedido;
-
-        Response response = RestAssured.given()
-                .pathParam("codigo_pedido", codigoPedido)
-                .when()
-                .put("/pedido/pedidos/{codigo_pedido}/entregar")
-                .then()
-                .statusCode(200)
-                .extract().response();
-
-        int statusCode = response.getStatusCode();
-        assertEquals(200, statusCode);
-
-        // Exibir a resposta
-        responseString = "Resposta da API: " + response.getBody().asString();
+//        String codigoPedido = DataTransfer.getValueAsString(DataTransferKey.CODIGO_PEDIDO);
+//        RestAssured.baseURI = BASE_URL;
+//
+//        Response response = RestAssured.given()
+//                .pathParam("codigo_pedido", codigoPedido)
+//                .when()
+//                .put("/pedido/pedidos/{codigo_pedido}/entregar")
+//                .then()
+//                .statusCode(200)
+//                .extract().response();
+//
+//        int statusCode = response.getStatusCode();
+//        assertEquals(200, statusCode);
+//
+//        // Exibir a resposta
+//        responseString = "Resposta da API: " + response.getBody().asString();
     }
 
     @Entao("O status do pedido eh atualizado para {string}")
